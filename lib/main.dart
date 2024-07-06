@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Image.asset(
-                  'assets/image/soda_logo.png',
+                  'assets/soda_logo.png',
                   width: size.width,
                   height: size.height * 0.4,
                 ),
