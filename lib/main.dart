@@ -73,10 +73,12 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      NameTextField(
-                        size: size,
-                        textEditingController: _textEditingController,
-                      ),
+                      if (!Provider.of<AppState>(context)
+                          .isRegisterButtonPressed) // RegisterButton이 눌렸는지 확인
+                        NameTextField(
+                          size: size,
+                          textEditingController: _textEditingController,
+                        ),
                       const SizedBox(
                         height: 30,
                       ),
@@ -223,6 +225,7 @@ class AppState extends ChangeNotifier {
   bool _disposed = false;
   bool _isTextFieldEmpty = true;
   bool _isSubmitted = false;
+  bool _isRegisterButtonPressed = false; // 새로운 상태 변수 추가
   String name = '';
 
   @override
@@ -255,6 +258,9 @@ class AppState extends ChangeNotifier {
   bool get isSubmitted => _isSubmitted;
   void toggleIsSubmitted() {
     _isSubmitted = !_isSubmitted;
+    _isRegisterButtonPressed = true; // RegisterButton이 눌렸을 때 업데이트
     notifyListeners();
   }
+
+  bool get isRegisterButtonPressed => _isRegisterButtonPressed;
 }
